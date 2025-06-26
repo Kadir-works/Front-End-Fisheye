@@ -132,36 +132,49 @@ form textarea {
 /* ====== GALERIE DE MÉDIAS ====== */
 .media-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 350px);
   gap: 40px;
   margin: 30px 100px;
 }
 
+/* ====== CARTE INDIVIDUELLE ====== */
 .media-card {
+  width: 350px;
+  height: 351px;
   display: flex;
   flex-direction: column;
+  background-color: white;
 }
 
+
+/* ====== IMAGE OU VIDÉO ====== */
 .media-card img,
 .media-card video {
-  width: 100%;
-  height: auto;
+  width: 350px;
+  height: 300px;
+  object-fit: cover;
   border-radius: 5px;
   cursor: pointer;
 }
 
+/* ====== INFOS : TITRE + LIKES ====== */
 .media-info {
+  height: 51px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 8px;
+  padding: 0 10px;
 }
 
 .media-info h2 {
   font-size: 16px;
+  font-weight: 500;
   margin: 0;
   color: #333;
   flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .likes {
@@ -170,8 +183,72 @@ form textarea {
   gap: 5px;
 }
 
-.likes img {
-  width: 18px;
-  height: 18px;
+.likes .like-count {
+  font-size: 16px;
+}
+
+.likes .like-button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #901C1C;
   cursor: pointer;
+}
+/* ===== LIGHTBOX ===== */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.95);
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.lightbox.show {
+  display: flex;
+}
+
+.lightbox-content {
+  max-width: 80%;
+  max-height: 80%;
+  text-align: center;
+  color: white;
+}
+
+.lightbox-content img,
+.lightbox-content video {
+  max-width: 100%;
+  max-height: 80vh;
+}
+
+.lightbox-content h2 {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.lightbox-close {
+  top: 20px;
+  right: 30px;
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
 }

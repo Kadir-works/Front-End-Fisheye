@@ -1,37 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <meta charset="utf-8" />
+    <title>Fisheye - photographe</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
   </head>
+
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="index.html" aria-label="Retour à la page d'accueil">
+        <img src="assets/images/logo.png" class="logo" alt="Logo Fisheye" />
+      </a>
     </header>
+
     <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <section class="photograph-header"></section>
+
+      <div class="media-filter">
+        <label for="sort-select">Trier par :</label>
+        <select id="sort-select" aria-label="Trier les médias">
+          <option value="popularity">Popularité</option>
+          <option value="date">Date</option>
+          <option value="title">Titre</option>
+        </select>
+      </div>
+
+      <section class="media-gallery"></section>
+
+      <div
+        id="lightbox"
+        class="lightbox"
+        aria-hidden="true"
+        role="dialog"
+        tabindex="-1"
+      >
+        <button class="lightbox-close" aria-label="Fermer la lightbox">
+          ✖
+        </button>
+        <button class="lightbox-prev" aria-label="Média précédent">❮</button>
+        <div class="lightbox-content"></div>
+        <button class="lightbox-next" aria-label="Média suivant">❯</button>
       </div>
     </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+
+    <div id="contact_modal" aria-hidden="true">
+      <div class="modal" role="dialog" aria-labelledby="contact-title">
+        <header>
+          <h2 id="contact-title">Contactez-moi</h2>
+          <img
+            src="assets/icons/close.svg"
+            onclick="closeModal()"
+            alt="Fermer la modale"
+          />
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+        <form onsubmit="submitForm(event)">
+          <div>
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" required />
+          </div>
+          <div>
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div>
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button class="contact_button" type="submit">Envoyer</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/pages/photographer.js" type="module"></script>
+    <script src="scripts/utils/contactForm.js"></script>
   </body>
 </html>
