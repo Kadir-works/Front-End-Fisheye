@@ -35,7 +35,7 @@ function displayMedia(mediaList, photographerFirstName) {
   const gallery = document.querySelector(".media-gallery");
   gallery.innerHTML = "";
 
-  mediaList.forEach((media) => {
+  mediaList.forEach((media, index) => {
     const filePath = media.image
       ? `assets/photographers/${photographerFirstName}/${media.image}`
       : `assets/photographers/${photographerFirstName}/${media.video}`;
@@ -60,13 +60,26 @@ function displayMedia(mediaList, photographerFirstName) {
     // Clic pour ouvrir dans lightbox
     article
       .querySelector("img, video")
-      .addEventListener("click", () => openLightbox(media, filePath));
+      .addEventListener("click", () =>
+        openLightbox(media, mediaList, index, photographerFirstName)
+      );
 
     // Clic sur le bouton like
     article.querySelector(".like-button").addEventListener("click", (e) => {
+      const likeButton = e.currentTarget;
       const likeCount = article.querySelector(".like-count");
       let count = parseInt(likeCount.textContent);
-      count++;
+
+      const isLiked = likeButton.classList.contains("liked");
+
+      if (isLiked) {
+        count--;
+        likeButton.classList.remove("liked");
+      } else {
+        count++;
+        likeButton.classList.add("liked");
+      }
+
       likeCount.textContent = count;
       updateTotalLikes();
     });
