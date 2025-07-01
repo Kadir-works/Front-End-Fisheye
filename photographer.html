@@ -38,6 +38,7 @@
         aria-hidden="true"
         role="dialog"
         tabindex="-1"
+        aria-modal="true"
       >
         <button class="lightbox-close" aria-label="Fermer la lightbox">
           ✖
@@ -82,8 +83,12 @@
       </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="scripts/pages/photographer.js" type="module"></script>
+    <div class="photographer-stats">
+      <span class="total-likes"></span> <span class="price-per-day"></span>
+    </div>
+
     <script src="scripts/utils/contactForm.js"></script>
+
+    <script type="module" src="scripts/pages/photographer.js"></script>
   </body>
 </html>

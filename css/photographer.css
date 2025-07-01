@@ -95,15 +95,21 @@ form textarea {
   margin-top: 5px;
 }
 
-.photograph-header .contact_button {
-  background-color: #901C1C;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 14px 28px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+/* Styles spécifiques pour le bouton d'envoi du formulaire de contact */
+.modal form .contact_button { /* Cible le bouton de la modale pour être plus spécifique */
+    background-color: #901C1C; /* Couleur de fond rouge/rose */
+    color: white; /* Couleur du texte blanc */
+    font-size: 18px; /* Taille de la police */
+    font-weight: bold; /* Texte en gras */
+    padding: 12px 20px; /* Espacement interne */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur de souris qui indique un clic */
+    transition: background-color 0.3s ease; /* Transition douce au survol */
+    width: auto; /* Largeur automatique pour s'adapter au contenu */
+    min-width: 170px; /* Largeur minimale pour ressembler au bouton "Contactez-moi" */
+    align-self: center; /* Centre le bouton dans le flex container du formulaire */
+    margin-top: 20px; /* Espacement au-dessus du bouton */
 }
 
 .photograph-header .photographer-portrait {
@@ -127,6 +133,8 @@ form textarea {
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  background: #901C1C;
+    color: white;
 }
 
 /* ====== GALERIE DE MÉDIAS ====== */
@@ -251,4 +259,37 @@ form textarea {
 
 .lightbox-next {
   right: 20px;
+}
+/* ====== TOTAL LIKES & PRICE FOOTER ====== */
+.photographer-stats {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #DB8876; /* Couleur de fond selon la maquette */
+  color: black; /* Couleur du texte */
+  padding: 10px 20px;
+  border-radius: 5px 0 0 0; /* Coin supérieur gauche arrondi */
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Espace entre likes et prix */
+  font-size: 20px;
+  font-weight: bold;
+  z-index: 999; /* Assure qu'il est au-dessus des autres éléments */
+}
+
+.photographer-stats .total-likes {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.photographer-stats .total-likes::after {
+    content: "♥"; /* Ajout du coeur après le nombre */
+    color: black; /* Couleur du coeur */
+    font-size: 18px; /* Taille du coeur */
+}
+
+.photographer-stats .price-per-day {
+    /* Style pour le prix par jour */
+    margin-left: 10px; /* Petit espace supplémentaire si besoin */
 }
