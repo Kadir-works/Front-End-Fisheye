@@ -1,12 +1,12 @@
 // scripts/factories/mediaFactory.js
 
-import { handleLike } from "../utils/likesManager.js"; // Assurez-vous que cette ligne est présente
+import { handleLike } from "../utils/likesManager.js";
 
 export function mediaFactory(mediaData) {
   const { id, image, video, title, likes } = mediaData;
   const mediaContainer = document.createElement("div");
   mediaContainer.classList.add("media-card");
-  mediaContainer.setAttribute("data-id", id); // Très important pour retrouver le média
+  mediaContainer.setAttribute("data-id", id); // Pour retrouver le média
 
   let mediaElement;
 
@@ -29,6 +29,7 @@ export function mediaFactory(mediaData) {
   }
 
   const mediaInfo = document.createElement("div");
+  mediaInfo.classList.add("media-info");
   mediaInfo.innerHTML = `
         <h3>${title}</h3>
         <div class="likes">
