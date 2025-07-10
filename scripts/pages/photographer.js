@@ -87,15 +87,7 @@ async function initPhotographerPage() {
     );
 
     // Initialiser le gestionnaire de tri
-    setupSort(currentMediaList, displayMedia, photographerFolderName); // displayMedia est passé comme callback
-
-    // Gérer l'affichage de la modale de contact
-    // Le bouton de contact de la modale est déjà géré via onclick dans le template.
-    // Si vous souhaitez utiliser addEventListener, décommentez et adaptez ce bloc :
-    // const contactBtn = document.querySelector(".contact_button");
-    // if (contactBtn) {
-    //     contactBtn.addEventListener("click", () => displayModal(currentPhotographer.name));
-    // }
+    setupSort(currentMediaList, displayMedia, photographerFolderName);
   } else {
     console.error("Photographe non trouvé.");
     // Gérer le cas où le photographe n'existe pas, par exemple rediriger vers la page d'accueil

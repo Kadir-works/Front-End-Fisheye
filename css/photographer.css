@@ -1,354 +1,503 @@
 /* FILE: css/photographer.css */
 
+/*
+   Ce fichier contient les styles CSS spécifiques aux pages des photographes,
+   incluant la modale de contact, l'en-tête du photographe, le filtre de tri,
+   la galerie de médias, la lightbox et le pied de page des statistiques.
+*/
+
+/* Styles généraux pour le corps de la page */
 body {
-  max-width: 1240px; /* Largeur maximale comme sur la maquette */
-  margin: 0 auto; /* Centre le contenu principal horizontalement */
-  padding: 0 20px; /* Un peu de padding sur les côtés pour éviter que le contenu ne colle aux bords sur des écrans plus petits */
-  box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+    max-width: 1240px; /* Largeur maximale du contenu principal */
+    margin: 0 auto; /* Centre le contenu principal horizontalement */
+    padding: 0 20px; /* Marge intérieure sur les côtés pour éviter que le contenu ne colle aux bords */
+    box-sizing: border-box; /* S'assure que le padding est inclus dans la largeur totale des éléments */
 }
 
-*{
-   box-sizing: border-box;
+/* Réinitialisation globale du box-sizing pour tous les éléments */
+* {
+    box-sizing: border-box;
 }
 
-/* ====== MODALE DE CONTACT ====== */
+/* ======================================= */
+/* ====== 1. MODALE DE CONTACT ====== */
+/* ======================================= */
+
 #contact_modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1000;
+    display: none; /* Masquée par défaut */
+    position: fixed; /* Reste en place même au défilement */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Prend toute la largeur de la fenêtre */
+    height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    background-color: rgba(0, 0, 0, 0.6); /* Fond semi-transparent obscurcissant la page */
+    z-index: 1000; /* Assure que la modale est au-dessus du reste du contenu */
 }
 
 .modal {
-  background-color: #DB8876;
-  width: 50%;
-  margin: 100px auto;
-  padding: 35px;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    background-color: #DB8876; /* Couleur de fond de la modale */
+    width: 50%; /* Largeur de la modale */
+    margin: 50px auto; /* Centre la modale verticalement et horizontalement */
+    padding: 35px;
+    border-radius: 5px; /* Coins légèrement arrondis */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 90vh; /* Hauteur maximale pour permettre le défilement si le contenu est trop grand */
+    overflow-y: auto; /* Active la barre de défilement verticale si nécessaire */
 }
 
 .modal header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Aligne les éléments en haut */
 }
 
 .modal header h2 {
-  font-size: 48px;
-  margin: 0;
+    font-size: 48px;
+    margin: 0;
+    color: #312E2E; /* Couleur du titre dans la modale */
 }
 
 .modal header img {
-  cursor: pointer;
-  width: 25px;
-  height: 25px;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
 }
 
 .modal form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding-top: 65px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacement entre les champs de formulaire */
+    padding-top: 65px; /* Espacement avec le titre de la modale */
 }
 
 .modal form div {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligne les labels et inputs à gauche */
 }
 
 .modal form label {
-  font-size: 18px;
-  font-weight: bold;
-  color: #312E2E;
-  margin-bottom: 5px;
+    font-size: 36px;
+    font-weight: normal;
+    color: #312E2E;
+    margin-bottom: 5px;
 }
 
 .modal form input[type="text"],
 .modal form input[type="email"],
 .modal form textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 16px;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Inclut padding et border dans la largeur/hauteur */
+    font-size: 16px;
+}
+
+.modal form input[type="text"],
+.modal form input[type="email"] {
+    height: 68px; /* Hauteur fixe pour les champs de texte et email */
+}
+
+.modal form textarea {
+    height: 170px; /* Hauteur fixe pour le champ de message */
+    resize: vertical; /* Permet le redimensionnement vertical par l'utilisateur */
 }
 
 .modal form .contact_button {
-  background-color: #901C1C;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  min-width: 170px;
-  align-self: flex-start;
-  margin-top: 20px;
+    background-color: #901C1C;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Animation au survol */
+    min-width: 170px;
+    align-self: flex-start; /* Aligne le bouton à gauche */
+    margin-top: 20px;
+    height: 69px; /* Hauteur fixe du bouton */
 }
 
 .modal form .contact_button:hover,
 .modal form .contact_button:focus {
-  background-color: #D3573C;
+    background-color: #D3573C; /* Changement de couleur au survol/focus */
 }
 
-/* ====== EN-TÊTE DU PHOTOGRAPHE (photographer.html) ====== */
+/* ================================================== */
+/* ====== 2. EN-TÊTE DU PHOTOGRAPHE (photographer.html) ====== */
+/* ================================================== */
+
 .photograph-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px 100px;
-  position: relative;
-  width: 100%;
-  box-sizing: border-box;
-  background: #FAFAFA;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 50px;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    background: #FAFAFA; /* Couleur de fond de l'en-tête */
 }
 
 .photograph-header .photographer-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-basis: 30%;
-  margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-basis: 30%; /* Prend 30% de la largeur disponible */
 }
 
 .photograph-header h1 {
-  font-size: 64px;
-  color: #D3573C;
-  margin: 0;
-  font-weight: normal;
+    font-size: 64px;
+    color: #D3573C; /* Couleur du nom du photographe */
+    margin: 0;
+    font-weight: normal;
 }
 
 .photograph-header .location {
-  font-size: 24px;
-  color: #D3573C;
-  margin-top: 5px;
+    font-size: 24px;
+    color: #D3573C;
+    margin-top: 5px;
 }
 
 .photograph-header .tagline {
-  font-size: 18px;
-  color: #525252;
-  margin-top: 5px;
+    font-size: 18px;
+    color: #525252;
+    margin-top: 5px;
 }
 
 .photograph-header .photographer-portrait {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-left: 20px;
+    width: 200px; /* Taille du cercle de l'image de profil */
+    height: 200px;
+    object-fit: cover; /* Recadre l'image pour couvrir le conteneur */
+    border-radius: 50%; /* Rend l'image circulaire */
+    margin-left: 20px;
+    /* Ajout d'une bordure si désiré, par exemple: border: 2px solid #901C1C; */
 }
 
 .photograph-header .contact_button {
-  background-color: #901C1C;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  min-width: 170px;
-  margin: 0 40px;
-  flex-shrink: 0;
-  padding: 23px;
+    background-color: #901C1C;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    min-width: 170px;
+    flex-shrink: 0; /* Empêche le bouton de rétrécir */
+    padding: 23px; /* Hauteur spécifique pour correspondre à la maquette */
 }
 
 .photograph-header .contact_button:hover,
 .photograph-header .contact_button:focus {
-  background-color: #D3573C;
+    background-color: #D3573C;
 }
 
 
-/* ====== FILTRE DE TRI DES MÉDIAS ====== */
+/* ======================================= */
+/* ====== 3. FILTRE DE TRI DES MÉDIAS ====== */
+/* ======================================= */
+
 .media-filter {
-  display: flex;
-  align-items: center;
-  margin: 50px 0 30px 100px;
+    display: flex;
+    align-items: center;
+    margin: 20px 0 50px 0; /* Marge au-dessus et en dessous du filtre */
+    gap: 20px; /* Espacement entre le label et le sélecteur */
 }
 
 .media-filter label {
-  font-size: 18px;
-  font-weight: bold;
-  margin-right: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 15px; /* Espacement entre le label et le mot "Trier par" */
 }
 
-.media-filter select {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #901C1C;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-  outline: none;
+/* Conteneur principal du sélecteur personnalisé */
+.custom-select-wrapper {
+    height: 69px; /* Hauteur fixe du sélecteur */
+    position: relative; /* Essentiel pour positionner la liste des options */
+    display: inline-block;
+    min-width: 170px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-align: left;
+    background-color: #901C1C;
+    cursor: pointer;
+    z-index: 10;
+    
+    /* === GESTION DES COINS ARRONDIS pour l'apparence "bloc" === */
+    border-radius: 5px; /* Par défaut (quand fermé), tous les coins sont arrondis */
+    overflow: hidden; /* IMPORTANT: Assure que les coins arrondis sont bien appliqués au contenu */
 }
 
-.media-filter select option {
-  background-color: #901C1C;
-  color: white;
+/* Lorsque le sélecteur est ouvert, ajuste les coins du bas pour qu'il se connecte à la liste */
+.custom-select-wrapper .open {
+    border-radius: 5px 5px 0 0; /* Coins supérieurs arrondis, coins inférieurs carrés */
 }
 
-/* ====== GALERIE DE MÉDIAS ====== */
+/* L'élément cliquable qui représente le sélecteur fermé/ouvert */
+.custom-select-trigger {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 24px;
+    height: 100%; /* Prend 100% de la hauteur du wrapper */
+    
+    /* === BORDURE INFÉRIEURE DU DÉCLENCHEUR (LA LIGNE BLANCHE ENTRE DÉCLENCHEUR ET LISTE) === */
+    border-bottom: 2px solid transparent; /* Bordure invisible par défaut */
+    transition: border-bottom 0.2s ease-in-out; /* Animation pour la bordure */
+}
+
+/* La bordure inférieure apparaît lorsque le sélecteur est ouvert */
+.custom-select-wrapper.open .custom-select-trigger {
+    border-bottom: 2px solid white; /* La ligne blanche apparaît ici */
+}
+
+.custom-select-trigger .arrow-icon {
+    width: 25px; /* Taille de l'icône flèche */
+    height: 25px;
+    margin-left: 10px;
+    transition: transform 0.2s; /* Animation de la flèche */
+}
+
+/* Rotation de la flèche quand le menu est ouvert (JS ajoute la classe 'open') */
+.custom-select-wrapper.open .custom-select-trigger .arrow-icon {
+    transform: rotate(180deg); /* La flèche pointe vers le haut */
+}
+
+/* La liste des options déroulantes (initialement cachée) */
+.custom-options-list {
+    display: none; /* Caché par défaut, le JS le rendra 'display: block' */
+    position: absolute;
+    top: 100%; /* === MODIFIÉ : Colle la liste juste en dessous du déclencheur (plus d'espace) === */
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none; /* Retire les puces de liste */
+    background-color: #901C1C; /* Même couleur de fond que le trigger */
+    
+    /* === GESTION DES COINS ARRONDIS pour l'apparence "bloc" === */
+    border-radius: 0 0 5px 5px; /* Coins supérieurs carrés, coins inférieurs arrondis */
+    overflow: hidden; /* IMPORTANT: Assure que les bordures internes sont propres aux coins */
+    z-index: 9; /* Légèrement en dessous du trigger mais toujours au-dessus du contenu */
+
+    /* === MODIFIÉ : PAS DE BORDURE SUPÉRIEURE ICI, elle est sur le déclencheur === */
+    /* border-top: 2px solid white; (SUPPRIMÉ) */
+    border-bottom: 2px solid white; /* Conserve le trait blanc en bas de la liste */
+}
+
+/* Affichage de la liste des options lorsque le wrapper est 'open' */
+.custom-select-wrapper.open .custom-options-list {
+    display: block;
+}
+
+/* Style pour chaque option individuelle */
+.custom-option {
+    padding: 12px 16px;
+    cursor: pointer;
+    color: white;
+    text-align: left; /* Assure que le texte est aligné à gauche */
+}
+
+/* === LE TRAIT BLANC ENTRE LES OPTIONS === */
+/* Applique une bordure inférieure à toutes les options SAUF la dernière */
+.custom-option:not(:last-child) {
+    border-bottom: 2px solid white;
+}
+
+/* Style au survol d'une option */
+.custom-option:hover {
+    background-color: #C12121; /* Couleur de survol */
+}
+
+/* Style pour l'option actuellement sélectionnée (peut être marqué par JS) */
+.custom-option.selected {
+    /* Si vous voulez un style pour l'option qui est actuellement sélectionnée mais masquée dans la liste,
+       vous pouvez l'ajouter ici. Par exemple: background-color: #C12121; */
+}
+
+
+/* ======================================= */
+/* ====== 4. GALERIE DE MÉDIAS ====== */
+/* ======================================= */
+
 .media-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 70px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes de taille égale */
+    gap: 70px; /* Espacement entre les cartes médias */
 }
 
 .media-card {
-  display: flex;
-  flex-direction: column;
-  width: 350px;
+    display: flex;
+    flex-direction: column;
+    width: 350px; /* Largeur fixe de la carte média */
 }
 
 .media-card img,
 .media-card video {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 5px;
-  cursor: pointer;
+    width: 100%;
+    height: 300px;
+    object-fit: cover; /* Recadre l'image/vidéo pour remplir le conteneur */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer;
 }
 
-/* ====== INFOS : TITRE + LIKES ====== */
+/* === INFOS : TITRE + LIKES === */
 .media-info {
-  height: 51px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px;
-  box-sizing: border-box;
+    height: 51px; /* Hauteur fixe pour les infos */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 
 .media-info h3 {
-  font-size: 16px;
-  font-weight: 500;
-  margin: 0;
-  color: #D3573C;
-  max-width: calc(100% - 70px);
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+    color: #D3573C; /* Couleur du titre du média */
+    max-width: calc(100% - 70px); /* Laisse de la place pour les likes */
 }
 
 .likes {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0; /* Empêche le conteneur des likes de rétrécir */
 }
 
 .likes .like-count {
-  font-size: 16px;
-  color: #D3573C;
+    font-size: 16px;
+    color: #D3573C;
 }
 
 .likes .like-btn {
-  background: none;
-  border: none;
-  font-size: 27px;
-  color: #901C1C;
-  cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 27px;
+    color: #901C1C;
+    cursor: pointer;
+    padding: 0; /* Supprime le padding par défaut du bouton */
 }
 
-/* ====== LIGHTBOX ====== */
+
+/* ======================================= */
+/* ====== 5. LIGHTBOX ====== */
+/* ======================================= */
+
 .lightbox {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1001;
-  justify-content: center;
-  align-items: center;
+    display: none; /* Masquée par défaut */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white; /* Fond blanc plein pour la lightbox */
+    z-index: 1001; /* Au-dessus de tout */
+    justify-content: center;
+    align-items: center;
 }
 
 .lightbox.show {
-  display: flex;
+    display: flex; /* Affiche la lightbox lorsque la classe 'show' est présente */
 }
 
 .lightbox-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 80%;
-  max-height: 80%;
-  text-align: center;
-  color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 80%; /* Largeur maximale du contenu de la lightbox */
+    max-height: 80%; /* Hauteur maximale du contenu de la lightbox */
+    text-align: center; /* Centre le texte */
+    /* color: white; (Supprimé car le fond est blanc, le texte doit être visible) */
 }
 
 .lightbox-content img,
 .lightbox-content video {
-  max-width: 100%;
-  max-height: 80vh;
+    max-width: 100%;
+    max-height: 80vh; /* La hauteur maximale de l'image/vidéo */
+    object-fit: contain; /* S'assure que l'image est entièrement visible sans être coupée */
 }
 
 .lightbox-content h2 {
-  margin-top: 10px;
-  font-size: 20px;
+    margin-top: 10px;
+    font-size: 24px;
+    width: 100%;
+    text-align: left; /* Aligne le titre à gauche */
+    color: #901C1C; /* Couleur du titre du média dans la lightbox */
+    font-weight: normal;
 }
 
 .lightbox-close,
 .lightbox-prev,
 .lightbox-next {
-  position: absolute;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
+    position: absolute;
+    background: none;
+    border: none;
+    color: white; /* Couleur par défaut des icônes */
+    font-size: 2rem; /* Grande taille pour les icônes */
+    cursor: pointer;
 }
 
 .lightbox-close {
-  top: 20px;
-  right: 30px;
+    top: 20px;
+    right: 30px;
+    color: #901C1C; /* Couleur spécifique pour le bouton fermer */
 }
 
 .lightbox-prev {
-  left: 20px;
+    left: 20px;
+    color: #901C1C; /* Couleur spécifique pour le bouton précédent */
 }
 
 .lightbox-next {
-  right: 20px;
+    right: 20px;
+    color: #901C1C; /* Couleur spécifique pour le bouton suivant */
 }
 
-/* ====== TOTAL LIKES & PRICE FOOTER ====== */
+
+/* ======================================= */
+/* ====== 6. TOTAL LIKES & PRICE FOOTER ====== */
+/* ======================================= */
+
 .photographer-stats {
-  position: fixed;
-  bottom: 0;
-  right: 40px;
-  background-color: #DB8876;
-  color: black;
-  padding: 10px 20px;
-  border-radius: 5px 0 0 0;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  font-size: 20px;
-  font-weight: bold;
+    position: fixed; /* Reste visible même en défilant */
+    bottom: 0;
+    right: 40px; /* Position à droite de la page */
+    background-color: #DB8876; /* Couleur de fond selon la maquette */
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px 0 0 0; /* Coin supérieur gauche arrondi */
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacement entre les éléments */
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .photographer-stats .total-likes {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .photographer-stats .total-likes::after {
-  content: "♥";
-  margin-left: 5px;
+    content: "♥"; /* Ajoute le cœur après le nombre de likes */
+    margin-left: 5px;
+    color: black; /* S'assure que le cœur est noir */
+}
+
+/* Style pour le prix par jour */
+.photographer-stats .price-per-day {
+    /* Ajoutez des styles si nécessaire, ex: margin-left: 15px; */
 }

@@ -20,14 +20,60 @@
 
     <main id="main">
       <section class="photograph-header"></section>
-
+      <!-- modif -->
       <div class="media-filter">
-        <label for="sort-select">Trier par :</label>
-        <select id="sort-select" aria-label="Trier les médias">
-          <option value="popularity">Popularité</option>
-          <option value="date">Date</option>
-          <option value="title">Titre</option>
-        </select>
+        <label for="sort-trigger">Trier par :</label>
+        <div class="custom-select-wrapper">
+          <div
+            class="custom-select-trigger"
+            id="sort-trigger"
+            tabindex="0"
+            role="button"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="sort-options-list"
+          >
+            <span class="trigger-text">Popularité</span>
+            <img
+              src="assets/icons/arrow-down.svg"
+              alt="Flèche vers le bas"
+              class="arrow-icon"
+            />
+          </div>
+
+          <ul
+            class="custom-options-list"
+            id="sort-options-list"
+            role="listbox"
+            aria-hidden="true"
+          >
+            <li
+              class="custom-option selected"
+              data-value="popularity"
+              role="option"
+              aria-selected="true"
+              tabindex="0"
+            >
+              Popularité
+            </li>
+            <li
+              class="custom-option"
+              data-value="date"
+              role="option"
+              tabindex="-1"
+            >
+              Date
+            </li>
+            <li
+              class="custom-option"
+              data-value="title"
+              role="option"
+              tabindex="-1"
+            >
+              Titre
+            </li>
+          </ul>
+        </div>
       </div>
 
       <section class="media-gallery"></section>
