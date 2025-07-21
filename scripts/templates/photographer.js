@@ -1,4 +1,4 @@
-// Export de la fonction photographerTemplate pour pouvoir l'importer ailleurs (ex: index.js)
+// Export de la fonction photographerTemplate pour pouvoir l'importer ailleurs
 export function photographerTemplate(data) {
   // On extrait les données nécessaires de l'objet "data"
   const { id, name, portrait, city, country, tagline, price } = data;

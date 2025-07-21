@@ -54,7 +54,7 @@ body {
     align-items: flex-start; /* Aligne les éléments en haut */
 }
 
-.modal header h2 {
+.modal header h1 {
     font-size: 48px;
     margin: 0;
     color: #312E2E; /* Couleur du titre dans la modale */
@@ -204,127 +204,6 @@ body {
 /* ======================================= */
 /* ====== 3. FILTRE DE TRI DES MÉDIAS ====== */
 /* ======================================= */
-
-.media-filter {
-    display: flex;
-    align-items: center;
-    margin: 20px 0 50px 0; /* Marge au-dessus et en dessous du filtre */
-    gap: 20px; /* Espacement entre le label et le sélecteur */
-}
-
-.media-filter label {
-    font-size: 18px;
-    font-weight: bold;
-    margin-right: 15px; /* Espacement entre le label et le mot "Trier par" */
-}
-
-/* Conteneur principal du sélecteur personnalisé */
-.custom-select-wrapper {
-    height: 69px; /* Hauteur fixe du sélecteur */
-    position: relative; /* Essentiel pour positionner la liste des options */
-    display: inline-block;
-    min-width: 170px;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    text-align: left;
-    background-color: #901C1C;
-    cursor: pointer;
-    z-index: 10;
-    
-    /* === GESTION DES COINS ARRONDIS pour l'apparence "bloc" === */
-    border-radius: 5px; /* Par défaut (quand fermé), tous les coins sont arrondis */
-    overflow: hidden; /* IMPORTANT: Assure que les coins arrondis sont bien appliqués au contenu */
-}
-
-/* Lorsque le sélecteur est ouvert, ajuste les coins du bas pour qu'il se connecte à la liste */
-.custom-select-wrapper .open {
-    border-radius: 5px 5px 0 0; /* Coins supérieurs arrondis, coins inférieurs carrés */
-}
-
-/* L'élément cliquable qui représente le sélecteur fermé/ouvert */
-.custom-select-trigger {
-    padding: 12px 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 24px;
-    height: 100%; /* Prend 100% de la hauteur du wrapper */
-    
-    /* === BORDURE INFÉRIEURE DU DÉCLENCHEUR (LA LIGNE BLANCHE ENTRE DÉCLENCHEUR ET LISTE) === */
-    border-bottom: 2px solid transparent; /* Bordure invisible par défaut */
-    transition: border-bottom 0.2s ease-in-out; /* Animation pour la bordure */
-}
-
-/* La bordure inférieure apparaît lorsque le sélecteur est ouvert */
-.custom-select-wrapper.open .custom-select-trigger {
-    border-bottom: 2px solid white; /* La ligne blanche apparaît ici */
-}
-
-.custom-select-trigger .arrow-icon {
-    width: 25px; /* Taille de l'icône flèche */
-    height: 25px;
-    margin-left: 10px;
-    transition: transform 0.2s; /* Animation de la flèche */
-}
-
-/* Rotation de la flèche quand le menu est ouvert (JS ajoute la classe 'open') */
-.custom-select-wrapper.open .custom-select-trigger .arrow-icon {
-    transform: rotate(180deg); /* La flèche pointe vers le haut */
-}
-
-/* La liste des options déroulantes (initialement cachée) */
-.custom-options-list {
-    display: none; /* Caché par défaut, le JS le rendra 'display: block' */
-    position: absolute;
-    top: 100%; /* === MODIFIÉ : Colle la liste juste en dessous du déclencheur (plus d'espace) === */
-    left: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    list-style: none; /* Retire les puces de liste */
-    background-color: #901C1C; /* Même couleur de fond que le trigger */
-    
-    /* === GESTION DES COINS ARRONDIS pour l'apparence "bloc" === */
-    border-radius: 0 0 5px 5px; /* Coins supérieurs carrés, coins inférieurs arrondis */
-    overflow: hidden; /* IMPORTANT: Assure que les bordures internes sont propres aux coins */
-    z-index: 9; /* Légèrement en dessous du trigger mais toujours au-dessus du contenu */
-
-    /* === MODIFIÉ : PAS DE BORDURE SUPÉRIEURE ICI, elle est sur le déclencheur === */
-    /* border-top: 2px solid white; (SUPPRIMÉ) */
-    border-bottom: 2px solid white; /* Conserve le trait blanc en bas de la liste */
-}
-
-/* Affichage de la liste des options lorsque le wrapper est 'open' */
-.custom-select-wrapper.open .custom-options-list {
-    display: block;
-}
-
-/* Style pour chaque option individuelle */
-.custom-option {
-    padding: 12px 16px;
-    cursor: pointer;
-    color: white;
-    text-align: left; /* Assure que le texte est aligné à gauche */
-}
-
-/* === LE TRAIT BLANC ENTRE LES OPTIONS === */
-/* Applique une bordure inférieure à toutes les options SAUF la dernière */
-.custom-option:not(:last-child) {
-    border-bottom: 2px solid white;
-}
-
-/* Style au survol d'une option */
-.custom-option:hover {
-    background-color: #C12121; /* Couleur de survol */
-}
-
-/* Style pour l'option actuellement sélectionnée (peut être marqué par JS) */
-.custom-option.selected {
-    /* Si vous voulez un style pour l'option qui est actuellement sélectionnée mais masquée dans la liste,
-       vous pouvez l'ajouter ici. Par exemple: background-color: #C12121; */
-}
-
 
 /* ======================================= */
 /* ====== 4. GALERIE DE MÉDIAS ====== */
@@ -498,6 +377,107 @@ body {
 }
 
 /* Style pour le prix par jour */
-.photographer-stats .price-per-day {
-    /* Ajoutez des styles si nécessaire, ex: margin-left: 15px; */
+/* Ajoutez des styles si nécessaire, ex: margin-left: 15px; */
+/* .photographer-stats .price-per-day {
+} */
+
+/* Fichier: css/photographer.css */
+
+/* --- Styles du tri personnalisé (Custom Select) --- */
+
+.media-filter {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espace entre "Trier par :" et le select */
+    font-weight: bold;
+}
+
+.custom-select-wrapper {
+    position: relative; /* Pour positionner la liste déroulante par rapport à cela */
+    width: 170px; /* Largeur fixe pour le conteneur du select */
+}
+
+.custom-select-trigger {
+    background-color: #901C1C; /* Couleur de fond du bouton */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex; /* Pour aligner le texte et la flèche */
+    justify-content: space-between; /* Pour pousser la flèche à droite */
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none; /* Pas de bordure par défaut du bouton */
+    outline: none; /* Pas de contour au focus par défaut, nous allons le gérer */
+    width: 100%; /* S'étend sur toute la largeur de son parent */
+}
+
+/* Focus state pour l'accessibilité */
+.custom-select-trigger:focus-visible {
+    outline: 2px solid #000; /* Contour visible pour le clavier */
+    outline-offset: 2px;
+}
+
+.custom-select-trigger .arrow-icon {
+    width: 12px; /* Taille de la flèche */
+    height: 12px;
+    margin-left: 10px;
+    transition: transform 0.3s ease; /* Animation de la flèche */
+}
+
+/* Rotation de la flèche lorsque le menu est ouvert */
+.custom-select-wrapper.open .custom-select-trigger .arrow-icon {
+    transform: rotate(180deg);
+}
+
+.custom-options-list {
+    position: absolute; /* Positionne la liste au-dessus des autres éléments */
+    top: 100%; /* Se place juste en dessous du trigger */
+    left: 0;
+    width: 100%;
+    background-color: #901C1C;
+    list-style: none; /* Retire les puces de liste */
+    padding: 0;
+    margin: 5px 0 0 0; /* Un petit espace avec le trigger */
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* S'assure qu'elle est au-dessus d'autres contenus */
+
+    display: none; /* <--- TRÈS IMPORTANT : Cache la liste par défaut */
+}
+
+/* Affiche la liste lorsque la classe 'open' est présente sur le wrapper */
+.custom-select-wrapper.open .custom-options-list {
+    display: block; /* Affiche la liste */
+}
+
+.custom-option {
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Séparateur d'options */
+}
+
+.custom-option:last-child {
+    border-bottom: none; /* Pas de bordure sur la dernière option */
+}
+
+.custom-option:hover,
+.custom-option:focus { /* Effet au survol et au focus clavier */
+    background-color: #CC2955; /* Couleur de surbrillance */
+    outline: none; /* Retire le focus par défaut du navigateur */
+}
+
+/* Style pour l'option actuellement sélectionnée (elle sera masquée dans la liste) */
+.custom-option.selected {
+    /* Vous pouvez ajouter un style ici si vous vouliez qu'elle soit visible
+       et juste "désactivée" dans la liste, mais notre JS la cache avec is-hidden-in-list. */
+}
+
+/* Cette règle cache l'option sélectionnée DANS la liste quand le menu est ouvert */
+.custom-options-list .custom-option.is-hidden-in-list {
+    display: none;
 }
