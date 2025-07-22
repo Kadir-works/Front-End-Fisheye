@@ -55,15 +55,16 @@ body {
 }
 
 .modal header h1 {
-    font-size: 48px;
+    font-size: 64px;
     margin: 0;
     color: #312E2E; /* Couleur du titre dans la modale */
 }
 
 .modal header img {
     cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 42px;
+    height: 42px;
+    margin: auto 0;
 }
 
 .modal form {
@@ -353,16 +354,20 @@ body {
 .photographer-stats {
     position: fixed; /* Reste visible même en défilant */
     bottom: 0;
-    right: 40px; /* Position à droite de la page */
+    right: calc((100vw - min(100vw - 40px, 1240px)) / 2);
+    width: 376px;
+    height: 89px;
     background-color: #DB8876; /* Couleur de fond selon la maquette */
     color: black;
     padding: 10px 20px;
-    border-radius: 5px 0 0 0; /* Coin supérieur gauche arrondi */
+    border-radius: 5px 5px 0 0; /* Coin supérieur gauche arrondi */
     display: flex;
     align-items: center;
+    justify-content: space-around;
     gap: 20px; /* Espacement entre les éléments */
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
+    z-index: 1000;
 }
 
 .photographer-stats .total-likes {
@@ -376,54 +381,69 @@ body {
     color: black; /* S'assure que le cœur est noir */
 }
 
-/* Style pour le prix par jour */
-/* Ajoutez des styles si nécessaire, ex: margin-left: 15px; */
-/* .photographer-stats .price-per-day {
-} */
-
-/* Fichier: css/photographer.css */
 
 /* --- Styles du tri personnalisé (Custom Select) --- */
 
 .media-filter {
+    margin-top: 20px;
+    margin-bottom: 60px;
     display: flex;
     align-items: center;
-    gap: 15px; /* Espace entre "Trier par :" et le select */
+    gap: 15px; /* Espace entre "Trier par :" et le sélecteur */
+    font-size: 1.125rem; /* 18px */
     font-weight: bold;
+    color: #313131; /* Couleur du texte "Trier par :" */
 }
 
 .custom-select-wrapper {
     position: relative; /* Pour positionner la liste déroulante par rapport à cela */
-    width: 170px; /* Largeur fixe pour le conteneur du select */
+    width: 170px; /* Largeur fixe du conteneur du sélecteur */
+    font-size: 1.125rem; /* 18px */
+    font-weight: bold;
+    /* Ajustement de la hauteur du wrapper si nécessaire pour l'alignement */
+    height: 48px; /* Hauteur pour correspondre au visuel du bouton */
 }
 
 .custom-select-trigger {
     background-color: #901C1C; /* Couleur de fond du bouton */
     color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 15px 18px; /* Ajustement du padding pour correspondre au visuel */
+    border-radius: 5px; /* Bordures arrondies */
     cursor: pointer;
     display: flex; /* Pour aligner le texte et la flèche */
     justify-content: space-between; /* Pour pousser la flèche à droite */
     align-items: center;
-    font-size: 1.1rem;
-    font-weight: bold;
+    font-size: 1.125rem; /* 18px */
+    font-weight: normal;
     border: none; /* Pas de bordure par défaut du bouton */
     outline: none; /* Pas de contour au focus par défaut, nous allons le gérer */
     width: 100%; /* S'étend sur toute la largeur de son parent */
+    height: 100%; /* Pour que le bouton remplisse le wrapper */
+    box-sizing: border-box; /* Inclut padding et border dans la largeur/hauteur */
+    line-height: 1; /* Assure un bon alignement vertical du texte */
+    height: 60px;
+
 }
 
-/* Focus state pour l'accessibilité */
+/* Style du bouton trigger LORSQUE le menu est ouvert (aria-expanded="true") */
+.custom-select-trigger[aria-expanded="true"] {
+    border-bottom-left-radius: 0; /* Supprime l'arrondi en bas à gauche */
+    border-bottom-right-radius: 0; /* Supprime l'arrondi en bas à droite */
+    /* Optionnel: Ajoutez ici la bordure blanche du bas si elle n'est pas déjà gérée */
+}
+
+/* Focus state pour l'accessibilité (clavier) */
 .custom-select-trigger:focus-visible {
-    outline: 2px solid #000; /* Contour visible pour le clavier */
+    outline: 2px solid #DB8876; /* Contour visible pour le clavier, couleur du thème */
     outline-offset: 2px;
 }
 
 .custom-select-trigger .arrow-icon {
-    width: 12px; /* Taille de la flèche */
-    height: 12px;
+    width: 25px; /* Taille de la flèche, ajusté pour être plus visible */
+    height: 25px;
     margin-left: 10px;
-    transition: transform 0.3s ease; /* Animation de la flèche */
+    transition: transform 0.3s ease; /* Animation fluide de la flèche */
+    pointer-events: none; /* La flèche ne doit pas intercepter les clics */
 }
 
 /* Rotation de la flèche lorsque le menu est ouvert */
@@ -433,18 +453,18 @@ body {
 
 .custom-options-list {
     position: absolute; /* Positionne la liste au-dessus des autres éléments */
-    top: 100%; /* Se place juste en dessous du trigger */
     left: 0;
     width: 100%;
-    background-color: #901C1C;
+    background-color: #901C1C; /* Couleur de fond de la liste */
     list-style: none; /* Retire les puces de liste */
     padding: 0;
-    margin: 5px 0 0 0; /* Un petit espace avec le trigger */
-    border-radius: 5px;
+    margin: 0; /* Pas de marge par défaut pour la liste */
+    border-radius: 0 0 5px 5px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 10; /* S'assure qu'elle est au-dessus d'autres contenus */
+    overflow: hidden; /* Assure que les coins arrondis sont respectés */
 
-    display: none; /* <--- TRÈS IMPORTANT : Cache la liste par défaut */
+    display: none; /*  Cache la liste par défaut */
 }
 
 /* Affiche la liste lorsque la classe 'open' est présente sur le wrapper */
@@ -454,11 +474,13 @@ body {
 
 .custom-option {
     color: white;
-    padding: 10px 15px;
+    padding: 15px 18px; /* Padding similaire au trigger pour la cohérence */
     cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Séparateur d'options */
+    font-size: 1.125rem; /* 18px */
+    font-weight: normal;
+    /* border-bottom: 1px solid white; */
+    text-align: left; /* Assure que le texte est aligné à gauche */
+    box-sizing: border-box; /* Inclut padding et border dans la largeur/hauteur */
 }
 
 .custom-option:last-child {
@@ -467,17 +489,20 @@ body {
 
 .custom-option:hover,
 .custom-option:focus { /* Effet au survol et au focus clavier */
-    background-color: #CC2955; /* Couleur de surbrillance */
+    background-color: #DB8876; /* Couleur de surbrillance */
     outline: none; /* Retire le focus par défaut du navigateur */
-}
-
-/* Style pour l'option actuellement sélectionnée (elle sera masquée dans la liste) */
-.custom-option.selected {
-    /* Vous pouvez ajouter un style ici si vous vouliez qu'elle soit visible
-       et juste "désactivée" dans la liste, mais notre JS la cache avec is-hidden-in-list. */
 }
 
 /* Cette règle cache l'option sélectionnée DANS la liste quand le menu est ouvert */
 .custom-options-list .custom-option.is-hidden-in-list {
     display: none;
+}
+
+/* Style pour l'élément qui affiche le texte sélectionné à l'intérieur du trigger */
+.custom-select-trigger .trigger-text {
+    /* Si nécessaire, ajustez ici les styles pour le span qui contient le texte */
+}
+
+.margehr{
+    margin: 0 10px 0;
 }
