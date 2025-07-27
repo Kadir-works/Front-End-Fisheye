@@ -498,10 +498,6 @@ body {
     display: none;
 }
 
-/* Style pour l'élément qui affiche le texte sélectionné à l'intérieur du trigger */
-.custom-select-trigger .trigger-text {
-    /* Si nécessaire, ajustez ici les styles pour le span qui contient le texte */
-}
 
 .margehr{
     margin: 0 10px 0;

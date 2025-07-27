@@ -1,4 +1,6 @@
-//  écouteur de clavier pour détecter la touche Escape
+// scripts/utils/contactForme.js
+
+// écouteur de clavier pour détecter la touche Escape
 function handleKeyDown(event) {
   if (event.key === "Escape") {
     closeModal();
@@ -31,16 +33,28 @@ function trapFocus(modal) {
     }
   });
 }
+
 /* eslint-disable no-unused-vars */
 function displayModal(photographerName = "") {
   const modal = document.getElementById("contact_modal");
+  const mainContent = document.getElementById("main");
+
   modal.style.display = "block";
+  // La modale n'est plus cachée aux lecteurs d'écran lorsqu'elle est ouverte
+  modal.removeAttribute("aria-hidden");
+
+  // Rendre le reste du document inaccessible aux lecteurs d'écran
+  if (mainContent) {
+    // Vérifie si l'élément main existe
+    mainContent.setAttribute("aria-hidden", "true");
+  }
+
   // le focus au premier champ du formulaire pour l'accessibilité
   document.getElementById("prenom").focus();
-  // Rendre le reste du document inaccessible aux lecteurs d'écran
-  document.getElementById("main").setAttribute("aria-hidden", "true");
+
   document.addEventListener("keydown", handleKeyDown);
   trapFocus(modal);
+
   // Mettre à jour le nom du photographe dans le titre de la modale
   const nameSpan = document.getElementById("photographer-contact-name");
   if (nameSpan) {
@@ -50,12 +64,32 @@ function displayModal(photographerName = "") {
 
 function closeModal() {
   const modal = document.getElementById("contact_modal");
+  const mainContent = document.getElementById("main"); // Référence au contenu principal
+
   modal.style.display = "none";
+  // La modale est de nouveau cachée aux lecteurs d'écran lorsqu'elle est fermée
+  modal.setAttribute("aria-hidden", "true");
+
   document.removeEventListener("keydown", handleKeyDown);
+
+  // Rendre le reste du document accessible aux lecteurs d'écran
+  if (mainContent) {
+    // Vérifie si l'élément main existe
+    mainContent.removeAttribute("aria-hidden");
+  }
+
   // Réinitialiser le texte pour la prochaine ouverture si nécessaire
   const nameSpan = document.getElementById("photographer-contact-name");
   if (nameSpan) {
     nameSpan.textContent = "";
+  }
+  const contactButtonOnPage = document.querySelector(".contact_button");
+  if (contactButtonOnPage) {
+    contactButtonOnPage.focus();
+  } else {
+    // Si aucun bouton d'ouverture spécifique, mettez le focus sur un élément par défaut
+    // Par exemple, le logo du site
+    document.querySelector(".logo").focus();
   }
 }
 
@@ -78,9 +112,9 @@ function submitForm(event) {
   console.log("Message :", message);
   console.log("-------------------------------------");
 
-  //  fermer la modale après l'envoi
+  // fermer la modale après l'envoi
   closeModal();
 
-  //  Réinitialiser le formulaire
+  // Réinitialiser le formulaire
   document.querySelector(".modal form").reset();
 }

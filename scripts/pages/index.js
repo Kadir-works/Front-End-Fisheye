@@ -6,11 +6,11 @@ import { photographerTemplate } from "../templates/photographer.js";
 // Fonction pour récupérer les données des photographes depuis le fichier JSON
 async function getPhotographers() {
   try {
-    // On récupère les données du fichier JSON (chemin à adapter selon ta structure)
+    // On récupère les données du fichier JSON
     const response = await fetch("data/photographers.json");
     const data = await response.json();
 
-    // On affiche les données dans la console (debug)
+    // On affiche les données dans la console
     console.log(data.photographers);
 
     // On retourne la liste des photographes

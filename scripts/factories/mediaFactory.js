@@ -16,7 +16,7 @@ export function mediaFactory(mediaData) {
       "src",
       `assets/photographers/${mediaData.photographerName}/${image}`
     );
-    mediaElement.setAttribute("alt", `${image}`);
+    mediaElement.setAttribute("alt", title);
     mediaElement.setAttribute("tabindex", "0");
   } else if (video) {
     mediaElement = document.createElement("video");
@@ -44,7 +44,6 @@ export function mediaFactory(mediaData) {
   const likeButton = mediaInfo.querySelector(".like-btn");
   if (likeButton) {
     likeButton.addEventListener("click", () => {
-      console.log("SUCCESS: Clic détecté sur le bouton like pour l'ID:", id);
       handleLike(id);
     });
   } else {
