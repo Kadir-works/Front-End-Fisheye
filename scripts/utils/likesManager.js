@@ -67,17 +67,17 @@ export function handleLike(mediaId) {
   // Mettre à jour l'affichage du like sur la carte spécifique
   // Cette ligne n'est plus strictement nécessaire pour la persistance,
   // car le re-rendu complet va la mettre à jour, mais elle aide à la réactivité immédiate.
-  likeCountElement.textContent = media.likes;
-  console.log(
-    "Affichage mis à jour pour l'ID",
-    mediaId,
-    "avec",
-    media.likes,
-    "likes."
-  );
+  // likeCountElement.textContent = media.likes;
+  // console.log(
+  //   "Affichage mis à jour pour l'ID",
+  //   mediaId,
+  //   "avec",
+  //   media.likes,
+  //   "likes."
+  // );
 
   // **********************************************
-  // NOUVEAU : Appelle la fonction de rappel pour re-rendre la galerie entière
+  // Appelle la fonction de rappel pour re-rendre la galerie entière
   // Ceci garantit que les nombres et les styles sont mis à jour
   // à partir des données `currentMediaList` qui sont maintenant correctes.
   // **********************************************

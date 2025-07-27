@@ -16,7 +16,7 @@ export function mediaFactory(mediaData) {
       "src",
       `assets/photographers/${mediaData.photographerName}/${image}`
     );
-    mediaElement.setAttribute("alt", title);
+    mediaElement.setAttribute("alt", `${image}`);
     mediaElement.setAttribute("tabindex", "0");
   } else if (video) {
     mediaElement = document.createElement("video");
@@ -41,11 +41,9 @@ export function mediaFactory(mediaData) {
   mediaContainer.appendChild(mediaElement);
   mediaContainer.appendChild(mediaInfo);
 
-  // === VÉRIFIEZ MINUTIEUSEMENT CE BLOC ===
   const likeButton = mediaInfo.querySelector(".like-btn");
   if (likeButton) {
     likeButton.addEventListener("click", () => {
-      // AJOUTEZ CETTE LIGNE ICI :
       console.log("SUCCESS: Clic détecté sur le bouton like pour l'ID:", id);
       handleLike(id);
     });
@@ -55,7 +53,6 @@ export function mediaFactory(mediaData) {
       id
     );
   }
-  // =====================================
 
   return mediaContainer;
 }

@@ -245,7 +245,7 @@ body {
     font-size: 16px;
     font-weight: 500;
     margin: 0;
-    color: #D3573C; /* Couleur du titre du média */
+    color: #901C1C; /* Couleur du titre du média */
     max-width: calc(100% - 70px); /* Laisse de la place pour les likes */
 }
 
@@ -258,7 +258,7 @@ body {
 
 .likes .like-count {
     font-size: 16px;
-    color: #D3573C;
+    color: #901C1C;
 }
 
 .likes .like-btn {

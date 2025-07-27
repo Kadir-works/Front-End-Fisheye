@@ -31,7 +31,7 @@ function trapFocus(modal) {
     }
   });
 }
-
+/* eslint-disable no-unused-vars */
 function displayModal(photographerName = "") {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
@@ -60,6 +60,7 @@ function closeModal() {
 }
 
 // Empêche le comportement par défaut de soumission du formulaire (rechargement de page)
+/* eslint-disable no-unused-vars */
 function submitForm(event) {
   event.preventDefault();
 

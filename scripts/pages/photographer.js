@@ -27,8 +27,8 @@ function createPhotographerHeader(photographer) {
   header.innerHTML = `
     <div class="photographer-info">
       <h1>${photographer.name}</h1>
-      <p class="location">${photographer.city}, ${photographer.country}</p>
-      <p class="tagline">${photographer.tagline}</p>
+      <h2 class="location">${photographer.city}, ${photographer.country}</h2>
+      <h3 class="tagline">${photographer.tagline}</h3>
     </div>
     <button class="contact_button" onclick="displayModal('${photographer.name}')">Contactez-moi</button>
     <img src="assets/photographers/portraits/${photographer.portrait}"

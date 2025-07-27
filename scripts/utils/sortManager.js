@@ -30,7 +30,7 @@ export function setupSort(mediaList, callback, name) {
     !customOptionsList ||
     customOptions.length === 0 ||
     !arrowIconElement ||
-    !triggerTextElement // Vérification ajoutée
+    !triggerTextElement
   ) {
     console.error(
       "Erreur : Un ou plusieurs éléments du sélecteur personnalisé n'ont pas été trouvés. " +
