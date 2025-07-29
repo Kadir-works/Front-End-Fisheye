@@ -41,7 +41,6 @@ export function closeLightbox() {
   const lightbox = document.getElementById("lightbox");
   lightbox.classList.remove("show");
   lightbox.setAttribute("aria-hidden", "true");
-  // Optionnel: remettre le focus sur l'élément qui a ouvert la lightbox si possible
 }
 
 // Navigue au média suivant
@@ -79,22 +78,19 @@ function setupLightboxEventListeners() {
 
     switch (e.key) {
       case "ArrowRight":
+        e.preventDefault();
         showNextMedia();
         break;
       case "ArrowLeft":
         showPrevMedia();
+        e.preventDefault();
         break;
       case "Escape":
         closeLightbox();
+        e.preventDefault();
         break;
     }
   });
 }
 
-// Premier appel pour configurer les écouteurs d'événements.
-// Cela se fera une seule fois au chargement du script.
-// Vous pouvez aussi l'appeler via une fonction `init` si vous préférez.
-// Pour l'instant, je vais laisser `initLightbox` gérer l'appel `setupLightboxEventListeners`
-// afin d'assurer que les éléments sont bien chargés.
-// Ou mieux, on appelle setupLightboxEventListeners directement, car les éléments de la lightbox sont statiques.
 setupLightboxEventListeners(); // Appeler une fois au chargement du module

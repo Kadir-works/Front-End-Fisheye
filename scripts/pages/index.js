@@ -22,6 +22,7 @@ async function getPhotographers() {
 
 // Fonction pour afficher tous les photographes dans la page d'accueil
 async function displayPhotographers(photographers) {
+  // Trouve la zone d'affichage
   const photographersSection = document.querySelector(".photographer_section");
 
   photographers.forEach((photographer) => {

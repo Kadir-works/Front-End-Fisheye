@@ -354,7 +354,7 @@ body {
 .photographer-stats {
     position: fixed; /* Reste visible même en défilant */
     bottom: 0;
-    right: calc((100vw - min(100vw - 40px, 1240px)) / 2);
+    right: calc((96vw - min(100vw - 40px, 1240px)) / 2);
     width: 376px;
     height: 89px;
     background-color: #DB8876; /* Couleur de fond selon la maquette */

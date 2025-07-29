@@ -20,9 +20,8 @@
 
     <main id="main">
       <section class="photograph-header"></section>
-      <!-- modif -->
       <div class="media-filter">
-        <span for="sort-trigger">Trier par :</span>
+        <span id="sort-label">Trier par :</span>
         <div class="custom-select-wrapper">
           <div
             class="custom-select-trigger"
@@ -32,8 +31,9 @@
             aria-haspopup="listbox"
             aria-expanded="false"
             aria-controls="sort-options-list"
+            aria-labelledby="sort-label sort-trigger-text"
           >
-            <span class="trigger-text"></span>
+            <span class="trigger-text" id="sort-trigger-text"></span>
             <img
               src="assets/icons/arrow-down.svg"
               alt="Flèche vers le bas"

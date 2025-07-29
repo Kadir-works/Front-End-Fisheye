@@ -1,6 +1,7 @@
 // Export de la fonction photographerTemplate pour pouvoir l'importer ailleurs
+
 export function photographerTemplate(data) {
-  // On extrait les données nécessaires de l'objet "data"
+  // On extrait les données nécessaires de l'objet "data" (déstructuration d'objet)
   const { id, name, portrait, city, country, tagline, price } = data;
 
   // On construit le chemin de la photo de profil du photographe
